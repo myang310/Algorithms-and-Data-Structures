@@ -3,10 +3,10 @@ package StackQueueBag;
 import java.util.Iterator;
 import StackQueueBag.Node;
 
-public class LinkedListQueue<Item> implements Iterable<Item> 
+public class LinkedListQueue<T> implements Iterable<T> 
 {
-	private Node<Item> head;	// front of queue
-	private Node<Item> tail;	// end of queue
+	private Node<T> head;	// front of queue
+	private Node<T> tail;	// end of queue
 	private int N;					// size of stack
 	
 	public boolean isEmpty() {
@@ -17,20 +17,20 @@ public class LinkedListQueue<Item> implements Iterable<Item>
 		return N;
 	}
 
-	public void enqueue(Item item) 
-	{	// add item to the end of the queue
-		Node<Item> newItem = new Node<Item>(item);
+	public void enqueue(T data) 
+	{	// add data to the end of the queue
+		Node<T> newData = new Node<T>(data);
 		if (isEmpty())
-			head = newItem;
+			head = newData;
 		else
-			tail.setNextNode(newItem);
-		tail = newItem;
+			tail.setNextNode(newData);
+		tail = newData;
 		N++;
 	}
 
-	public Item dequeue() 
-	{	// remove item from the front of the queue
-		Item data = head.getData();
+	public T dequeue() 
+	{	// remove data from the front of the queue
+		T data = head.getData();
 		head = head.getNextNode();
 		if (isEmpty())
 			tail = null;	
@@ -38,11 +38,11 @@ public class LinkedListQueue<Item> implements Iterable<Item>
 		return data;
 	}
 
-	public Iterator<Item> iterator() {
+	public Iterator<T> iterator() {
 		return new ListIterator();
 	}
 
-	private class ListIterator implements Iterator<Item> {
+	private class ListIterator implements Iterator<T> {
 		private Node current = head;
 		
 		public boolean hasNext() {
@@ -51,8 +51,8 @@ public class LinkedListQueue<Item> implements Iterable<Item>
 
 		public void remove() {	}
 
-		public Item next() {
-			Item data = (Item) current.getData();
+		public T next() {
+			T data = (T) current.getData();
 			current = current.getNextNode();
 			return data;
 		}

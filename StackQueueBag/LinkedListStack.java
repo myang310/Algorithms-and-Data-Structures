@@ -3,9 +3,9 @@ package StackQueueBag;
 import java.util.Iterator;
 import StackQueueBag.Node;
 
-public class LinkedListStack<Item> implements Iterable<Item> 
+public class LinkedListStack<T> implements Iterable<T> 
 {
-	private Node<Item> first;	// top of stack
+	private Node<T> first;	// top of stack
 	private int N;			// size of stack
 	
 	public boolean isEmpty() {
@@ -16,25 +16,25 @@ public class LinkedListStack<Item> implements Iterable<Item>
 		return N;
 	}
 
-	public void push(Item item) {
-		Node<Item> second = first;
-		first = new Node<Item>(item);
+	public void push(T data) {
+		Node<T> second = first;
+		first = new Node<T>(data);
 		first.setNextNode(second);
 		N++;
 	}
 
-	public Item pop() {
-		Item data = first.getData();
+	public T pop() {
+		T data = first.getData();
 		first = first.getNextNode();
 		N--;
 		return data;
 	}
 
-	public Iterator<Item> iterator() {
+	public Iterator<T> iterator() {
 		return new ListIterator();
 	}
 
-	private class ListIterator implements Iterator<Item> {
+	private class ListIterator implements Iterator<T> {
 		private Node current = first;
 		
 		public boolean hasNext() {
@@ -43,8 +43,8 @@ public class LinkedListStack<Item> implements Iterable<Item>
 
 		public void remove() {	}
 
-		public Item next() {
-			Item data = (Item) current.getData();
+		public T next() {
+			T data = (T) current.getData();
 			current = current.getNextNode();
 			return data;
 		}

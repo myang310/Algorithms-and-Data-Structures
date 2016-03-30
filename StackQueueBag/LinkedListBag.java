@@ -4,9 +4,9 @@ import java.util.Iterator;
 import StackQueueBag.Node;
 
 // implementing a bag with a LIFO order
-public class LinkedListBag<Item> implements Iterable<Item> 
+public class LinkedListBag<T> implements Iterable<T> 
 {	
-	private Node<Item> first;	// top of stack
+	private Node<T> first;	// top of stack
 	private int N;			// size of stack
 	
 	public boolean isEmpty() {
@@ -17,18 +17,18 @@ public class LinkedListBag<Item> implements Iterable<Item>
 		return N;
 	}
 
-	public void add(Item item) {
-		Node<Item> second = first;
-		first = new Node<Item>(item);
+	public void add(T data) {
+		Node<T> second = first;
+		first = new Node<T>(data);
 		first.setNextNode(second);
 		N++;
 	}
 
-	public Iterator<Item> iterator() {
+	public Iterator<T> iterator() {
 		return new ListIterator();
 	}
 
-	private class ListIterator implements Iterator<Item> {
+	private class ListIterator implements Iterator<T> {
 		private Node current = first;
 		
 		public boolean hasNext() {
@@ -37,18 +37,18 @@ public class LinkedListBag<Item> implements Iterable<Item>
 
 		public void remove() {	}
 
-		public Item next() {
-			Item data = (Item) current.getData();
+		public T next() {
+			T data = (T) current.getData();
 			current = current.getNextNode();
 			return data;
 		}
 	}
 
 	public static void main(String[] args) {
-		LinkedListStack<Integer> stack = new LinkedListStack<Integer>();
+		LinkedListBag<Integer> bag = new LinkedListBag<Integer>();
 		for (int i = 1; i <= 5; i++)
-			stack.push(i);
-		for (int number : stack)
+			bag.add(i);
+		for (int number : bag)
 			System.out.println(number);
 	}
 }

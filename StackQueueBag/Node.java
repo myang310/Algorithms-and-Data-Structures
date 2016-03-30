@@ -1,22 +1,22 @@
 package StackQueueBag;
 
-public class Node<Item> {
-	private Item data;
+public class Node<T> {
+	private T data;
 	private Node nextNode;
 
-	public Node(Item data) {
+	public Node(T data) {
 		this.data = data;
 	}
 
-	public Item getData() {
+	public T getData() {
 		return data;
 	}
 
-	public Node<Item> getNextNode() {
+	public Node<T> getNextNode() {
 		return nextNode;
 	}
 
-	public void setNextNode(Node<Item> nextNode) {
+	public void setNextNode(Node<T> nextNode) {
 		this.nextNode = nextNode;
 	}
 
