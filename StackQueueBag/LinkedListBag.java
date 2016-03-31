@@ -24,6 +24,23 @@ public class LinkedListBag<T> implements Iterable<T>
 		N++;
 	}
 
+	public void reverseList() {
+		recursiveReverse(first);
+	}
+	        
+	private void recursiveReverse(Node<T> current {
+		if (current == null)
+			return;
+		if (current.getNextNode() == null) {
+			first = current;
+			return;
+		}
+
+		recursiveReverse(current.getNextNode());
+		current.getNextNode().setNextNode(current);
+		current.setNextNode(null);
+	}
+
 	public Iterator<T> iterator() {
 		return new ListIterator();
 	}

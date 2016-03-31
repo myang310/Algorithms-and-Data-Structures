@@ -38,6 +38,24 @@ public class LinkedListQueue<T> implements Iterable<T>
 		return data;
 	}
 
+	public void reverseList() {
+		recursiveReverse(first);
+	}
+	        
+	private void recursiveReverse(Node<T> current {
+		if (current == null)
+			return;
+		if (current.getNextNode() == null) {
+			head = current;
+			return;
+		}
+
+		recursiveReverse(current.getNextNode());
+		current.getNextNode().setNextNode(current);
+		current.setNextNode(null);
+		tail = current;
+	}
+
 	public Iterator<T> iterator() {
 		return new ListIterator();
 	}

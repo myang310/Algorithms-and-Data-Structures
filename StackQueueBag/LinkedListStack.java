@@ -30,6 +30,23 @@ public class LinkedListStack<T> implements Iterable<T>
 		return data;
 	}
 
+	public void reverseList() {
+		recursiveReverse(first);
+	}
+	        
+	private void recursiveReverse(Node<T> current) {
+		if (current == null)
+			return;
+		if (current.getNextNode() == null) {
+			first = current;
+			return;
+		}
+
+		recursiveReverse(current.getNextNode());
+		current.getNextNode().setNextNode(current);
+		current.setNextNode(null);
+	}
+
 	public Iterator<T> iterator() {
 		return new ListIterator();
 	}
@@ -52,8 +69,13 @@ public class LinkedListStack<T> implements Iterable<T>
 
 	public static void main(String[] args) {
 		LinkedListStack<Integer> stack = new LinkedListStack<Integer>();
+		System.out.println("This is the order of the stack when popped:");
 		for (int i = 1; i <= 5; i++)
 			stack.push(i);
+		for (int number : stack)
+			System.out.println(number);
+		stack.reverseList();
+		System.out.println("\nThis is the order of the reversed stack when popped:");
 		for (int number : stack)
 			System.out.println(number);
 	}
