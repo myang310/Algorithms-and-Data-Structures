@@ -7,7 +7,14 @@ public class LinkedListStack<T> implements Iterable<T>
 {
 	private Node<T> first;	// top of stack
 	private int N;			// size of stack
-	
+
+	public LinkedListStack() { }
+
+	public LinkedListStack(Node<T> node) {
+		this.first = node;
+		N = 1;
+	}
+
 	public boolean isEmpty() {
 		return first == null;
 	}

@@ -9,6 +9,14 @@ public class LinkedListQueue<T> implements Iterable<T>
 	private Node<T> tail;	// end of queue
 	private int N;					// size of stack
 	
+	public LinkedListQueue() { }
+
+	public LinkedListQueue(Node<T> node) {
+		head = node;
+		tail = node;
+		N = 1;
+	}
+
 	public boolean isEmpty() {
 		return head == null;
 	}
@@ -20,7 +28,7 @@ public class LinkedListQueue<T> implements Iterable<T>
 	public void enqueue(T data) 
 	{	// add data to the end of the queue
 		Node<T> newData = new Node<T>(data);
-		if (isEmpty())
+		if (this.isEmpty())
 			head = newData;
 		else
 			tail.setNextNode(newData);
@@ -32,7 +40,7 @@ public class LinkedListQueue<T> implements Iterable<T>
 	{	// remove data from the front of the queue
 		T data = head.getData();
 		head = head.getNextNode();
-		if (isEmpty())
+		if (this.isEmpty())
 			tail = null;	
 		N--;
 		return data;
@@ -42,7 +50,7 @@ public class LinkedListQueue<T> implements Iterable<T>
 		recursiveReverse(first);
 	}
 	        
-	private void recursiveReverse(Node<T> current {
+	private void recursiveReverse(Node<T> current) {
 		if (current == null)
 			return;
 		if (current.getNextNode() == null) {

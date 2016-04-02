@@ -8,7 +8,14 @@ public class LinkedListBag<T> implements Iterable<T>
 {	
 	private Node<T> first;	// top of stack
 	private int N;			// size of stack
-	
+
+	public LinkedListBag() { }
+
+	public LinkedListBag(Node<T> node) {
+		this.first = node;
+		N = 1;
+	}
+
 	public boolean isEmpty() {
 		return first == null;
 	}
@@ -28,7 +35,7 @@ public class LinkedListBag<T> implements Iterable<T>
 		recursiveReverse(first);
 	}
 	        
-	private void recursiveReverse(Node<T> current {
+	private void recursiveReverse(Node<T> current) {
 		if (current == null)
 			return;
 		if (current.getNextNode() == null) {
