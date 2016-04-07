@@ -40,7 +40,36 @@ public class LinkedListStack<T> implements Iterable<T>
 	public void reverseList() {
 		recursiveReverse(first);
 	}
-	        
+
+	public void remove(T key) {
+		// base case: go until you hit the last node
+		if (first == null) {
+			return;
+		}
+		
+		// a holder variable to hold the place of the first node
+		// and incrementing first to the next node to allow for
+		// a recursive call to remove(key);
+		Node origin = first;
+		first = first.getNextNode();
+		remove(key);
+
+		// resetting first to the pre-incremented node and begin processing
+		first = origin;
+		Node nextNode = first.getNextNode();
+
+		// change the current's next node to the 2nd node after if the next node's
+		// data is equal to the key
+		if (nextNode != null) {
+			if (nextNode.getData() == key || nextNode.getData().equals(key)) {
+				first.setNextNode(nextNode.getNextNode());
+			}
+		}
+		if (first.getData() == key) {
+			first = first.getNextNode();
+		}
+	}
+ 
 	private void recursiveReverse(Node<T> current) {
 		if (current == null)
 			return;
@@ -81,8 +110,20 @@ public class LinkedListStack<T> implements Iterable<T>
 			stack.push(i);
 		for (int number : stack)
 			System.out.println(number);
+
 		stack.reverseList();
 		System.out.println("\nThis is the order of the reversed stack when popped:");
+		for (int number : stack)
+			System.out.println(number);
+
+		System.out.println("\nAdding a few 3s:");
+		stack.push(3);
+		stack.push(3);
+		for (int number : stack)
+			System.out.println(number);
+
+		System.out.println("\nRemoving all 3s:");
+		stack.remove(3);
 		for (int number : stack)
 			System.out.println(number);
 	}
