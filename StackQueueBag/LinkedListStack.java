@@ -5,18 +5,18 @@ import StackQueueBag.Node;
 
 public class LinkedListStack<T> implements Iterable<T> 
 {
-	private Node<T> first;	// top of stack
+	private Node<T> head;	// top of stack
 	private int N;			// size of stack
 
 	public LinkedListStack() { }
 
 	public LinkedListStack(Node<T> node) {
-		this.first = node;
+		this.head = node;
 		N = 1;
 	}
 
 	public boolean isEmpty() {
-		return first == null;
+		return head == null;
 	}
 
 	public int size() {
@@ -24,49 +24,53 @@ public class LinkedListStack<T> implements Iterable<T>
 	}
 
 	public void push(T data) {
-		Node<T> second = first;
-		first = new Node<T>(data);
-		first.setNextNode(second);
+		Node<T> second = head;
+		head = new Node<T>(data);
+		head.setNextNode(second);
 		N++;
 	}
 
 	public T pop() {
-		T data = first.getData();
-		first = first.getNextNode();
+		T data = head.getData();
+		head = head.getNextNode();
 		N--;
 		return data;
 	}
 
 	public void reverseList() {
-		recursiveReverse(first);
+		recursiveReverse(head);
 	}
 
 	public void remove(T key) {
 		// base case: go until you hit the last node
-		if (first == null) {
+		if (head == null) {
 			return;
 		}
 		
-		// a holder variable to hold the place of the first node
-		// and incrementing first to the next node to allow for
+		// a holder variable to hold the place of the head node
+		// and incrementing head to the next node to allow for
 		// a recursive call to remove(key);
-		Node origin = first;
-		first = first.getNextNode();
+		Node origin = head;
+		head = head.getNextNode();
 		remove(key);
 
-		// resetting first to the pre-incremented node and begin processing
-		first = origin;
-		Node nextNode = first.getNextNode();
+		// resetting head to the pre-incremented node and begin processing
+		head = origin;
+		Node nextNode = head.getNextNode();
 
 		// change the current's next node to the 2nd node after if the next node's
 		// data is equal to the key
 		if (nextNode != null) {
 			if (nextNode.getData() == key || nextNode.getData().equals(key)) {
-				first.setNextNode(nextNode.getNextNode());
+				head.setNextNode(nextNode.getNextNode());
 			}
 		}
-		if (first.getData() == key) {
-			first = first.getNextNode();
+		
+		// if the current node's data is the key, then change the head of the
+		// linked list to the next node so that the function doesn't end with
+		// the head of the linked list pointing to a node with the key as its data
+		if (head.getData() == key) {
+			head = head.getNextNode();
 		}
 	}
  
@@ -74,7 +78,7 @@ public class LinkedListStack<T> implements Iterable<T>
 		if (current == null)
 			return;
 		if (current.getNextNode() == null) {
-			first = current;
+			head = current;
 			return;
 		}
 
@@ -88,7 +92,7 @@ public class LinkedListStack<T> implements Iterable<T>
 	}
 
 	private class ListIterator implements Iterator<T> {
-		private Node current = first;
+		private Node current = head;
 		
 		public boolean hasNext() {
 			return current != null;			
