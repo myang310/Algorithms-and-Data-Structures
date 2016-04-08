@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class UnionFind {
 	private int[] parent;	// link to parent
 	private int[] size;	// size of components for roots
