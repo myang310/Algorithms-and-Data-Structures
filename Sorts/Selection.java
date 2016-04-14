@@ -1,16 +1,24 @@
+package Sorts;
+
+/* Selection Sort
+ *
+ *	For an array of size N,
+ * All Cases: ~N²/2 compares and N exchanges
+ */
+
 public class Selection {
 	public static void sort(Comparable[] a) {
 		int N = a.length;
 		for (int i = 0; i < N; i++) {
 			int min = i;  // index of current minimum value
 			for (int j = i+1; j < N; j++)
-				if (isLessThan(a[j], a[min]))
+				if (isLess(a[j], a[min]))
 					min = j;   // replace with index of new minimum value
 			exchange(a, i, min);
 		}
 	}
 	
-	private static boolean isLessThan(Comparable v, Comparable w) {
+	private static boolean isLess(Comparable v, Comparable w) {
 		return v.compareTo(w) < 0;
 	}
 
@@ -28,7 +36,7 @@ public class Selection {
 
 	public static boolean isSorted(Comparable[] a) {
 		for (int i = 1; i < a.length; i++)
-			if (isless(a[i], a[i-1]))
+			if (isLess(a[i], a[i-1]))
 				return false;
 		
 		return true;
