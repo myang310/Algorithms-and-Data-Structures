@@ -40,6 +40,17 @@ public class LinkedListStack<T> implements Iterable<T>
 	public void reverseList() {
 		recursiveReverse(head);
 	}
+ 
+	private void recursiveReverse(Node<T> current) {
+		if (current == null || current.getNextNode() == null) {
+			head = current;
+			return;
+		}
+
+		recursiveReverse(current.getNextNode());
+		current.getNextNode().setNextNode(current);
+		current.setNextNode(null);
+	}
 
 	public void remove(T key) {
 		// base case: go until you hit the last node
@@ -70,21 +81,8 @@ public class LinkedListStack<T> implements Iterable<T>
 		// linked list to the next node so that the function doesn't end with
 		// the head of the linked list pointing to a node with the key as its data
 		if (head.getData() == key) {
-			head = head.getNextNode();
+			head = nextNode;
 		}
-	}
- 
-	private void recursiveReverse(Node<T> current) {
-		if (current == null)
-			return;
-		if (current.getNextNode() == null) {
-			head = current;
-			return;
-		}
-
-		recursiveReverse(current.getNextNode());
-		current.getNextNode().setNextNode(current);
-		current.setNextNode(null);
 	}
 
 	public Iterator<T> iterator() {

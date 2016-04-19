@@ -36,9 +36,7 @@ public class LinkedListBag<T> implements Iterable<T>
 	}
 	        
 	private void recursiveReverse(Node<T> current) {
-		if (current == null)
-			return;
-		if (current.getNextNode() == null) {
+		if (current == null || current.getNextNode() == null) {
 			head = current;
 			return;
 		}
@@ -78,7 +76,7 @@ public class LinkedListBag<T> implements Iterable<T>
 		// linked list to the next node so that the function doesn't end with
 		// the head of the linked list pointing to a node with the key as its data
 		if (head.getData() == key) {
-			head = head.getNextNode();
+			head = nextNode;
 		}
 	}
 

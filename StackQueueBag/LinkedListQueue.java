@@ -51,9 +51,7 @@ public class LinkedListQueue<T> implements Iterable<T>
 	}
 	        
 	private void recursiveReverse(Node<T> current) {
-		if (current == null)
-			return;
-		if (current.getNextNode() == null) {
+		if (current == null || current.getNextNode() == null) {
 			head = current;
 			return;
 		}
